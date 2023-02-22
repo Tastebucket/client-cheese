@@ -14,16 +14,6 @@ const CheeseForm = (props) => {
             <h3>{heading}</h3>
             <Form onSubmit={handleSubmit}>
                 <Form.Group className="m-2">
-                    <Form.Label>Name:</Form.Label>
-                    <Form.Control 
-                        placeholder="What is your cheese's name?"
-                        name="name"
-                        id="name"
-                        value={ cheese.name }
-                        onChange={handleChange}
-                    />
-                </Form.Group>
-                <Form.Group className="m-2">
                     <Form.Label>Type:</Form.Label>
                     <Form.Control 
                         placeholder="What type of cheese is this?"
@@ -36,7 +26,6 @@ const CheeseForm = (props) => {
                 <Form.Group className="m-2">
                     <Form.Label>Age:</Form.Label>
                     <Form.Control 
-                        type="number"
                         placeholder="How old is your cheese?"
                         name="age"
                         id="age"
@@ -46,9 +35,25 @@ const CheeseForm = (props) => {
                 </Form.Group>
                 <Form.Group className="m-2">
                     <Form.Check 
-                        label="Is this cheese adoptable?"
+                        label="Is this cheese stinky?"
                         name="adoptable"
-                        defaultChecked={ cheese.adoptable }
+                        defaultChecked={ cheese.isStinky }
+                        onChange={handleChange}
+                    />
+                </Form.Group>
+                <Form.Group className="m-2">
+                    <Form.Check 
+                        label="Is this cheese soft?"
+                        name="adoptable"
+                        defaultChecked={ cheese.isSoft }
+                        onChange={handleChange}
+                    />
+                </Form.Group>
+                <Form.Group className="m-2">
+                    <Form.Check 
+                        label="Does this cheese have holes?"
+                        name="adoptable"
+                        defaultChecked={ cheese.hasHoles }
                         onChange={handleChange}
                     />
                 </Form.Group>

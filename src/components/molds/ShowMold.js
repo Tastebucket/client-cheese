@@ -7,22 +7,12 @@ const ShowMold = (props) => {
     const { mold, user, cheese, msgAlert, triggerRefresh } = props
 
     const [editModalShow, setEditModalShow] = useState(false)
-   
-    const setBgCondition = (cond) => {
-        if (cond === 'new') {
-            return({width: '18rem', backgroundColor: '#b5ead7'})
-        } else if (cond === 'used') {
-            return({width: '18rem', backgroundColor: '#ffdac1'})
-        } else {
-            return({width: '18rem', backgroundColor: '#ff9aa2'})
-        }
-    }
-
+    const formatColor = mold.color.toLowerCase()
     // delete, similar to delete for cheeses, all we have to do is ensure that the user is the cheese's owner, and make the api call passing in the right args.
     const destroyMold = () => {
         // this is the api call file function
         // it requires three args, user, cheeseId, & moldId
-        deleteMold(user, cheese.id, mold._id)
+        deleteMold(user, cheese._id, mold._id)
             // upon success, we want to send a message
             .then(() => {
                 msgAlert({
@@ -45,14 +35,15 @@ const ShowMold = (props) => {
 
     return (
         <>
-            <Card className="m-2" style={setBgCondition(mold.condition)}>
-                <Card.Header>{mold.color} Mold</Card.Header>
+            <Card className="m-2" >
+                <Card.Header style={{backgroundColor:`${formatColor}`}}></Card.Header>
                 <Card.Body>
+                    <small>{mold.color} mold</small><br/>
                     <small>{mold.diameter} cm spot</small><br/>
                 </Card.Body>
                 <Card.Footer>
                     {
-                        user && cheese.owner && user._id === cheese.owner._id
+                        user && user._id === cheese.owner
                         ?
                         <>
                             <Button

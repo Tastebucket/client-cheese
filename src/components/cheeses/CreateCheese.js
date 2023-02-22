@@ -36,15 +36,10 @@ const CreateCheese = (props) => {
 
             console.log('this is the input type', e.target.type)
 
-            // to handle a number, we look at the type, and parse a string to an integer
-            if (e.target.type === 'number') {
-                updatedValue = parseInt(e.target.value)
-            }
-
             // to handle a checkbox, we can check the name, and change the value that is output. Checkboxes only know if they are checked or not
-            if (updatedName === 'adoptable' && e.target.checked) {
+            if (updatedName === ('isSoft' || 'isStinky' || 'hasHoles') && e.target.checked) {
                 updatedValue = true
-            } else if (updatedName === 'adoptable' && !e.target.checked) {
+            } else if (updatedName === ('isSoft' || 'isStinky' || 'hasHoles') && !e.target.checked) {
                 updatedValue = false
             }
             
@@ -62,10 +57,13 @@ const CreateCheese = (props) => {
 
     const onSubmit = (e) => {
         e.preventDefault()
+        
 
         createCheese(user, cheese)
             // first we'll nav to the show page
-            .then(res => { navigate(`/cheeses/${res.data.cheese.id}`)})
+            .then(res => { 
+                console.log('this is res data', res.data)
+                navigate(`/cheeses/${res.data.cheese._id}`)})
             // we'll also send a success message
             .then(() => {
                 msgAlert({

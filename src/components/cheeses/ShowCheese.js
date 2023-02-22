@@ -46,7 +46,7 @@ const ShowCheese = (props) => {
 
     // here's where our removeCheese function will be called
     const eatCheese = () => {
-        removeCheese(user, cheese.id)
+        removeCheese(user, cheese._id)
             // upon success, send the appropriate message and redirect users
             .then(() => {
                 msgAlert({
@@ -119,14 +119,14 @@ const ShowCheese = (props) => {
                             Give this {cheese.type} some mold!
                         </Button>
                         {
-                            cheese.owner && user && cheese.owner._id === user._id
+                            user && cheese.owner === user._id
                             ?
                             <>
                                 <Button 
                                     className="m-2" variant="warning"
                                     onClick={() => setEditModalShow(true)}
                                 >
-                                    Edit {cheese.name}
+                                    Edit {cheese.type}
                                 </Button>
                                 <Button 
                                     className="m-2" variant="danger"

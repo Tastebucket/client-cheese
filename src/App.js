@@ -13,6 +13,7 @@ import SignIn from './components/auth/SignIn'
 import SignOut from './components/auth/SignOut'
 import ShowCheese from './components/cheeses/ShowCheese'
 import ChangePassword from './components/auth/ChangePassword'
+import CreateCheese from './components/cheeses/CreateCheese'
 
 const App = () => {
 
@@ -68,6 +69,10 @@ const App = () => {
 						<RequireAuth user={user}>
 							<ChangePassword msgAlert={msgAlert} user={user} />
 						</RequireAuth>}
+					/>
+					<Route 
+						path='/create-cheese'
+						element={ <CreateCheese user={user} msgAlert={msgAlert} />}
 					/>
 					<Route 
 						path='cheeses/:id'

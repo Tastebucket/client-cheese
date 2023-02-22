@@ -16,10 +16,13 @@ const NewMoldModal = (props) => {
             const updatedName = e.target.name
             let updatedValue = e.target.value
 
+            if (e.target.type === 'number') {
+                updatedValue = parseInt(e.target.value)
+            }
             // to handle a checkbox, we can check the name, and change the value that is output. Checkboxes only know if they are checked or not
-            if (updatedName === 'isSqueaky' && e.target.checked) {
+            if (updatedName === 'isFuzzy' && e.target.checked) {
                 updatedValue = true
-            } else if (updatedName === 'isSqueaky' && !e.target.checked) {
+            } else if (updatedName === 'isFuzzy' && !e.target.checked) {
                 updatedValue = false
             }
             
@@ -38,7 +41,8 @@ const NewMoldModal = (props) => {
 
     const onSubmit = (e) => {
         e.preventDefault()
-        createMold(cheese.id, mold)
+        console.log('the cheese', cheese)
+        createMold(cheese._id, mold)
             // first we'll close the modal
             .then(() => handleClose())
             // we'll also send a success message
@@ -68,7 +72,7 @@ const NewMoldModal = (props) => {
                     mold={mold}
                     handleChange={onChange}
                     handleSubmit={onSubmit}
-                    heading={`Give ${cheese.name} a mold!`}
+                    heading={`Give this ${cheese.type} a mold!`}
                 />
             </Modal.Body>
         </Modal>
