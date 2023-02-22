@@ -25,7 +25,7 @@ const CheesesIndex = (props) => {
     const [error, setError] = useState(false)
     console.log('these are the cheeses in index', cheeses)
     // pull the message alert (msgAlert) from props
-    const { msgAlert } = props
+    const { msgAlert, user } = props
 
     // get our cheeses from the api when the component mounts
     useEffect(() => {
@@ -58,10 +58,10 @@ const CheesesIndex = (props) => {
     // produce one card for every cheese
     const cheeseCards = cheeses.map(cheese => (
         <Card key={ cheese.id } style={{ width: '30%', margin: 5 }}>
-            <Card.Header>{ cheese.fullTitle }</Card.Header>
+            <Card.Header>{ cheese.type }</Card.Header>
             <Card.Body>
                 <Card.Text>
-                    <Link to={`/cheeses/${cheese.id}`} className="btn btn-info">View { cheese.name }</Link>
+                    <Link to={`/cheeses/${cheese._id}`} className="btn btn-info">View { cheese.type }</Link>
                 </Card.Text>
                 { cheese.owner ?
                 <Card.Footer>
