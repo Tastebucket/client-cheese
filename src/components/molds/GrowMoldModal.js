@@ -10,7 +10,7 @@ import { updateMold } from '../../api/molds'
 // import messages from '../shared/AutoDismissAlert/messages'
 
 const GrowMoldModal = (props) => {
-    const { user, pet, show, handleClose, msgAlert, triggerRefresh } = props
+    const { user, cheese, show, handleClose, msgAlert, triggerRefresh } = props
 
     const [mold, setMold] = useState(props.mold)
 
@@ -22,9 +22,9 @@ const GrowMoldModal = (props) => {
             let updatedValue = e.target.value
 
             // to handle a checkbox, we can check the name, and change the value that is output. Checkboxes only know if they are checked or not
-            if (updatedName === 'isSqueaky' && e.target.checked) {
+            if (updatedName === 'isFuzzy' && e.target.checked) {
                 updatedValue = true
-            } else if (updatedName === 'isSqueaky' && !e.target.checked) {
+            } else if (updatedName === 'isFuzzy' && !e.target.checked) {
                 updatedValue = false
             }
             
@@ -43,14 +43,14 @@ const GrowMoldModal = (props) => {
 
     const onSubmit = (e) => {
         e.preventDefault()
-        updateMold(user, cheese.id, mold)
+        updateMold(user, cheese._id, mold)
             // first we'll close the modal
             .then(() => handleClose())
             // we'll also send a success message
             .then(() => {
                 msgAlert({
                     heading: 'Oh Yeah!',
-                    message: 'Great! The mold is better than ever',
+                    message: 'This mold is thriving',
                     variant: 'success'
                 })
             })
