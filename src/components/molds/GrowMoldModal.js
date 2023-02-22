@@ -43,7 +43,7 @@ const GrowMoldModal = (props) => {
 
     const onSubmit = (e) => {
         e.preventDefault()
-        updateMold(user, pet.id, mold)
+        updateMold(user, cheese.id, mold)
             // first we'll close the modal
             .then(() => handleClose())
             // we'll also send a success message
